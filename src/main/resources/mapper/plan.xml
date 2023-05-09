@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.plan.model.mapper.PlanMapper">
+	<resultMap type="planDto" id="plan">
+		<result column="id" property="id"/>
+		<result column="title" property="title"/>
+		<result column="member_id" property="memberId"/>
+	</resultMap>
+	
+	<insert id="addPlan" parameterType="planDto">
+		insert into plan (id, title, member_id)
+		values (#{id}, #{title}, #{memberId})
+		<selectKey resultType="Long" keyProperty="id" order="AFTER">
+			select last_insert_id()
+		</selectKey>
+	</insert>
+	
+	<delete id="deletePlan" parameterType="Long">
+		delete from plan
+		where id=#{id}
+	</delete>
+	
+	<select id="findPlanById" parameterType="Long" resultMap="plan">
+		select id, title, member_id
+		from plan
+		where id=#{id}
+	</select>
+	
+	<select id="findPlansByMemberId" parameterType="String" resultMap="plan">
+		select id, title, member_id
+		from plan
+		where member_id=#{memberId}
+	</select>
+	
+	<select id="findAll" resultMap="plan">
+		select id, title, member_id
+		from plan
+		order by id;
+	</select>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.user.model.mapper.UserMapper">
+	<resultMap type="UserDto" id="user">
+		<result column="id" property="id"/>
+		<result column="password" property="password"/>
+		<result column="name" property="name"/>
+		<result column="email" property="email"/>
+		<result column="isAdmin" property="isAdmin"/>
+	</resultMap>
+	
+	<insert id="join" parameterType="UserDto">
+		insert into user (id, password, name, email, isAdmin)
+		values (#{id}, #{password}, #{name}, #{email}, #{isAdmin})
+	</insert>
+	
+	<select id="login" parameterType="UserDto" resultMap="user">
+		select id, name, email, isAdmin
+		from user
+		where id=#{id} and password=#{password}
+	</select>
+	
+	<update id="modify" parameterType="UserDto">
+	 	update user
+	 	set password=#{password}, name=#{name}, email=#{email}
+	 	where id=#{id}
+	</update>
+	
+	<select id="getUserInfo" parameterType="UserDto" resultMap="user">
+		select id, name, email, password
+		from user
+		where id=#{id}
+	</select>
+	
+	<select id="findPassword" parameterType="UserDto" resultMap="user">
+		select password
+		from user
+		where id=#{id} and email=#{email} and name=#{name}
+	</select>
+	
+</mapper>
