@@ -77,9 +77,4 @@ public class AttractionController {
 		
 		return new ResponseEntity<List<GugunDto>> (guguns, HttpStatus.OK);
 	}
-	
-	@GetMapping("/addMyTrip")
-	public void addMyTrip(@RequestParam int contentId) {
-		
-	}
 }
