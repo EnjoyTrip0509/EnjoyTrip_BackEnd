@@ -2,9 +2,10 @@ package com.ssafy.location.model;
 
 public class LocationDto {
 	private Long id;
-	private int planOrder;
-	private Long planId;
 	private int contentId;
+	private int day;
+	private int order;
+	private Long planId;
 	
 	public Long getId() {
 		return id;
@@ -14,12 +15,20 @@ public class LocationDto {
 		this.id = id;
 	}
 	
-	public int getPlanOrder() {
-		return planOrder;
+	public int getDay() {
+		return day;
 	}
 	
-	public void setPlanOrder(int planOrder) {
-		this.planOrder = planOrder;
+	public void setDay(int day) {
+		this.day = day;
+	}
+	
+	public int getOrder() {
+		return order;
+	}
+	
+	public void setOrder(int order) {
+		this.order = order;
 	}
 	
 	public Long getPlanId() {
@@ -37,10 +46,6 @@ public class LocationDto {
 	public void setContentId(int contentId) {
 		this.contentId = contentId;
 	}
-
-	@Override
-	public String toString() {
-		return "LocationDto [id=" + id + ", planOrder=" + planOrder + ", planId=" + planId + ", contentId=" + contentId
-				+ "]";
-	}
+	
+	
 }

@@ -36,4 +36,14 @@ public class LocationServiceImpl implements LocationService {
 	public void deleteLocationsByPlanId(Long planId) throws Exception {
 		locationMapper.deleteLocationsByPlanId(planId);
 	}
+
+	@Override
+	public void deleteLocation(Long id) throws Exception {
+		locationMapper.deleteLocation(id);
+	}
+
+	@Override
+	public void updateLocation(Long id) throws Exception {
+		locationMapper.updateLocation(id);
+	}
 }

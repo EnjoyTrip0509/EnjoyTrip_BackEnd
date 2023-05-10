@@ -10,7 +10,9 @@ import com.ssafy.location.model.LocationDto;
 @Mapper
 public interface LocationMapper {
 	void addLocation(LocationDto locationDto) throws SQLException;
-	List<LocationDto> findLocationsByPlanId(Long planId) throws SQLException;
+	void deleteLocation(Long id) throws SQLException;
+	void updateLocation(Long id) throws SQLException;
 	LocationDto findLocationById(Long id) throws SQLException;
+	List<LocationDto> findLocationsByPlanId(Long planId) throws SQLException;
 	void deleteLocationsByPlanId(Long planId) throws SQLException;
 }

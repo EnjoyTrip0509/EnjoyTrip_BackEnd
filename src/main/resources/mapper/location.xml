@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.location.model.mapper.LocationMapper">
+	<resultMap type="locationDto" id="location">
+		<result column="id" property="id"/>
+		<result column="content_id" property="contentId"/>
+		<result column="day" property="day"/>
+		<result column="order" property="order"/>
+		<result column="plan_id" property="planId"/>
+	</resultMap>
+	
+	<insert id="addLocation" parameterType="locationDto">
+		insert into location (content_id, day, order, plan_id)
+		values (#{contentId}, #{day}, #{order}, #{planId})
+	</insert>
+	
+	<delete id="deleteLocation" parameterType="Long">
+		delete from location
+		where id=#{id}
+	</delete>
+
+	<update id="updateLocation" parameterType="LocationDto">
+		update location 
+		set day=#{day}, order=#{order}
+		where id=#{id}
+	</update>
+	
+	<select id="findLocationById" parameterType="Long" resultMap="location">
+		select id, content_id, day, order, plan_id
+		from plan
+		where id=#{id}
+	</select>
+	
+	<select id="findLocationsByPlanId" parameterType="Long" resultMap="location">
+		select id, content_id, day, order, plan_id
+		from plan
+		where plan_id=#{planId}
+	</select>
+	
+	<delete id="deleteLocationsByPlanId" parameterType="Long">
+		delete from location
+		where plan_id=#{planId}
+	</delete>
+</mapper>
