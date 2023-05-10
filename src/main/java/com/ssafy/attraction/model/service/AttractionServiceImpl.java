@@ -23,7 +23,7 @@ public class AttractionServiceImpl implements AttractionService {
 	}
 
 	@Override
-	public AttractionDto findAttractionByContentId(int contentId) throws Exception {
+	public AttractionDto findAttractionByContentId(String contentId) throws Exception {
 		return attractionMapper.findAttractionByContentId(contentId);
 	}
 
