@@ -47,10 +47,10 @@ public class PlanController {
 		@ApiResponse(code= 200, message = "서버 에러가 발생했습니다."),
 	})
 	@GetMapping
-	public ResponseEntity<List<PlanDto>> planList(UserDto loginUser) throws Exception {
-		logger.info("PlanController findPlansByMemberId - loginUser: {}.", loginUser);
+	public ResponseEntity<List<PlanDto>> planList(String userId) throws Exception {
+		logger.info("PlanController findPlansByMemberId - userId: {}.", userId);
 		
-		return ResponseEntity.ok(planService.findPlansByMemberId(loginUser.getId()));
+		return ResponseEntity.ok(planService.findPlansByMemberId(userId));
 	}
 
 	@ApiOperation(value = "여행 계획 추가", notes = "여행 계획을 추가합니다.")
