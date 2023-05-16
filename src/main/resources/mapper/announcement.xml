@@ -29,13 +29,11 @@
 		values (#{userId}, #{subject}, #{content}, 0, now())
 	</insert>
 	
-	<select id="listAnnouncement" parameterType="map" resultMap="announcement">
+	<select id="listAnnouncement" resultMap="announcement">
 		select a.article_no, a.user_id, a.subject, a.content, a.hit, a.register_time, u.name as user_name
 		from announcement a, user u 
 		where a.user_id = u.id
-		<include refid="search"></include>
 		order by a.article_no desc
-		limit #{start}, #{listsize}
 	</select>
 	
 	<select id="getTotalAnnouncementCount" parameterType="map" resultType="int">

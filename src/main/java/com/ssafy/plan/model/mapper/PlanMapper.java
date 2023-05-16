@@ -11,6 +11,7 @@ import com.ssafy.plan.model.PlanDto;
 public interface PlanMapper {
 	Long addPlan(PlanDto planDto) throws SQLException;
 	void deletePlan(Long id) throws SQLException;
+	void updatePlan(PlanDto planDto) throws SQLException;
 	PlanDto findPlanById(Long id) throws SQLException;
 	List<PlanDto> findPlansByMemberId(String memberId) throws SQLException;
 	List<PlanDto> findAll() throws SQLException;

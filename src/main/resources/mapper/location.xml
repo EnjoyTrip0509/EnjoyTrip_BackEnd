@@ -13,7 +13,10 @@
 	
 	<insert id="addLocation" parameterType="locationDto">
 		insert into location (content_id, day, `order`, plan_id)
-		values (#{contentId}, #{day}, #{order}, #{planId})
+		values (#{contentId}, 
+				#{day}, 
+				(select `order` from (select max(`order`) + 1 as `order` from location where plan_id=#{planId} and `day`=#{day}) as `last_insert_order`), 
+				#{planId})
 	</insert>
 	
 	<delete id="deleteLocation" parameterType="Long">
@@ -37,6 +40,7 @@
 		select id, content_id, day, `order`, plan_id
 		from location
 		where plan_id=#{planId}
+		order by `day`, `order`
 	</select>
 	
 	<delete id="deleteLocationsByPlanId" parameterType="Long">

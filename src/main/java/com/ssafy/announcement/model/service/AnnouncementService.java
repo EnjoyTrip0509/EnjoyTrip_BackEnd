@@ -9,7 +9,7 @@ import com.ssafy.util.PageNavigation;
 public interface AnnouncementService {
 	void writeAnnouncement(AnnouncementDto announcementDto) throws Exception;
 
-	List<AnnouncementDto> listAnnouncement(Map<String, String> map) throws Exception;
+	List<AnnouncementDto> listAnnouncement() throws Exception;
 
 	PageNavigation makePageNavigation(Map<String, String> map) throws Exception;
 	

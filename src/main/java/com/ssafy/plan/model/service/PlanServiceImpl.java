@@ -21,6 +21,11 @@ public class PlanServiceImpl implements PlanService {
 	}
 
 	@Override
+	public void updatePlan(PlanDto planDto) throws Exception {
+		planMapper.updatePlan(planDto);
+	}
+	
+	@Override
 	public void deletePlan(Long id) throws Exception {
 		planMapper.deletePlan(id);
 	}
@@ -39,5 +44,4 @@ public class PlanServiceImpl implements PlanService {
 	public List<PlanDto> findAll() throws Exception {
 		return planMapper.findAll();
 	}
-
 }

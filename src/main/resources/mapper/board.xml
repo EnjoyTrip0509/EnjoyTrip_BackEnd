@@ -33,13 +33,11 @@
 		</if>
 	</sql>
 
-	<select id="listArticle" parameterType="map" resultMap="article">
+	<select id="listArticle" resultMap="article">
 		select b.article_no, b.user_id, b.subject, b.content, b.hit, b.register_time, u.name as user_name 
 		from board b, user u
 		where b.user_id = u.id
-		<include refid="search"></include>
 		order by b.article_no desc
-		limit #{start}, #{listsize}
 	</select>
 	
 	<select id="getTotalArticleCount" parameterType="map" resultType="int">
