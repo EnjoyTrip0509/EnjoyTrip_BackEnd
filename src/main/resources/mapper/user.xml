@@ -8,28 +8,29 @@
 		<result column="password" property="password"/>
 		<result column="name" property="name"/>
 		<result column="email" property="email"/>
+		<result column="joindate" property="joinDate"/>
 		<result column="isAdmin" property="isAdmin"/>
 	</resultMap>
 	
 	<insert id="join" parameterType="UserDto">
-		insert into user (id, password, name, email, isAdmin)
-		values (#{id}, #{password}, #{name}, #{email}, #{isAdmin})
+		insert into user (id, password, name, email)
+		values (#{id}, #{password}, #{name}, #{email})
 	</insert>
 	
 	<select id="login" parameterType="UserDto" resultMap="user">
 		select id, name, email, isAdmin
 		from user
-		where id=#{id} and password=#{password}
+		where delflag = 0 and id=#{id} and password=#{password}
 	</select>
 	
 	<update id="modify" parameterType="UserDto">
 	 	update user
-	 	set password=#{password}, name=#{name}, email=#{email}
+	 	set password=#{password}, email=#{email}
 	 	where id=#{id}
 	</update>
 	
 	<select id="getUserInfo" parameterType="UserDto" resultMap="user">
-		select id, name, email, password
+		select id, name, email, joindate
 		from user
 		where id=#{id}
 	</select>
@@ -40,4 +41,21 @@
 		where id=#{id} and email=#{email} and name=#{name}
 	</select>
 	
+	<select id="getRefreshToken" parameterType="string" resultType="string">
+		select token
+		from user
+		where id = #{id}
+	</select>
+	
+	<update id="saveRefreshToken" parameterType="map">
+		update user
+		set token = #{token}
+		where id = #{id}
+	</update>
+	
+	<update id="deleteRefreshToken" parameterType="map">
+		update user
+		set token = #{token, jdbcType=VARCHAR}
+		where id = #{id}
+	</update>
 </mapper>
