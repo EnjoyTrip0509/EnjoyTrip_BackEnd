@@ -43,7 +43,7 @@ public class LocationServiceImpl implements LocationService {
 	}
 
 	@Override
-	public void updateLocation(Long id) throws Exception {
-		locationMapper.updateLocation(id);
+	public void updateLocation(LocationDto locationDto) throws Exception {
+		locationMapper.updateLocation(locationDto);
 	}
 }

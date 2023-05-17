@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -74,12 +75,12 @@ public class PlanController {
 		@ApiResponse(code= 400, message = "여행 계획 삭제 페이지가 존재하지 않습니다."),
 		@ApiResponse(code= 200, message = "서버 에러가 발생했습니다."),
 	})
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> delete(@PathVariable Long id) throws Exception {
-		logger.info("PlanController delete - planId : {}", id);
+	@DeleteMapping("/{planId}")
+	public ResponseEntity<Object> delete(@PathVariable Long planId) throws Exception {
+		logger.info("PlanController delete - planId : {}", planId);
 
-		locationService.deleteLocationsByPlanId(id);		
-		planService.deletePlan(id);
+		locationService.deleteLocationsByPlanId(planId);		
+		planService.deletePlan(planId);
 		
 		return ResponseEntity.ok().build();
 	}
@@ -100,6 +101,24 @@ public class PlanController {
 		return ResponseEntity.ok(plan);
 	}
 	
+	@ApiOperation(value = "여행 계획 수정", notes = "여행 계획을 수정합니다.")
+	@ApiResponses({
+		@ApiResponse(code= 200, message = "여행 계획을 수정하는 데 성공했습니다."),
+		@ApiResponse(code= 400, message = "여행 계획 수정 페이지가 존재하지 않습니다."),
+		@ApiResponse(code= 200, message = "서버 에러가 발생했습니다."),
+	})
+	@PutMapping
+	public ResponseEntity<PlanDto> update(@RequestBody PlanDto plan) throws Exception {
+		logger.info("PlanController update - plan : {}.", plan);
+		
+		planService.updatePlan(plan);
+		for (LocationDto location : plan.getLocations()) {
+			locationService.updateLocation(location);
+		}
+		
+		return ResponseEntity.ok(planService.findPlanById(plan.getId()));
+	}
+	
 	@ApiOperation(value = "여행 계획에 장소 추가", notes = "여행 계획에 장소를 추가합니다.")
 	@ApiResponses({
 		@ApiResponse(code= 200, message = "여행 계획에 장소를 추가하는 데 성공했습니다."),
@@ -108,9 +127,24 @@ public class PlanController {
 	})
 	@PostMapping("/location")
 	public ResponseEntity<Object> addLocation(@RequestBody LocationDto location) throws Exception {
-		logger.info("PlanController addLocation - location : {}.", location);
+		logger.info("PlanController add Location - location : {}.", location);
 
 		locationService.addLocation(location);
+
+		return ResponseEntity.ok().build();
+	}
+	
+	@ApiOperation(value = "장소 삭제", notes = "여행 계획에서 장소를 삭제합니다.")
+	@ApiResponses({
+		@ApiResponse(code= 200, message = "여행 계획에 장소를 삭제하는 데 성공했습니다."),
+		@ApiResponse(code= 400, message = "여행 계획에 장소 삭제 페이지가 존재하지 않습니다."),
+		@ApiResponse(code= 200, message = "서버 에러가 발생했습니다."),
+	})
+	@DeleteMapping("/location/{locationId}")
+	public ResponseEntity<Object> deleteLocation(@PathVariable Long locationId) throws Exception {
+		logger.info("PlanController delete Location - locationId : {}.", locationId);
+
+		locationService.deleteLocation(locationId);
 
 		return ResponseEntity.ok().build();
 	}

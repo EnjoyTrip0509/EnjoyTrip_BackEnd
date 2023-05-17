@@ -24,6 +24,12 @@
 		where id=#{id}
 	</delete>
 	
+	<update id="updatePlan" parameterType="planDto">
+		update plan 
+		set title=#{title}, start_date=#{startDate}, end_date=#{endDate}
+		where id=#{id}
+	</update>
+	
 	<select id="findPlanById" parameterType="Long" resultMap="plan">
 		select id, title, member_id, start_date, end_date
 		from plan
