@@ -1,7 +1,5 @@
 package com.ssafy.plan.controller;
 
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +40,7 @@ public class PlanController {
 	public String add(PlanDto planDto) throws Exception {
 		logger.info("Plan add {}", planDto);
 		
-		Long planId = planService.addPlan(planDto);
-		List<LocationDto> locations = planDto.getLocations();
-		for(LocationDto location : locations) {
-			location.setPlanId(planId);
-			locationService.addLocation(location);
-		}
+		planService.addPlan(planDto);
 		
 		return "redirect:/plan/list";
 	}
@@ -71,5 +64,14 @@ public class PlanController {
 		
 		model.addAttribute("plan", planService.findPlanById(id));
 		return "plan/planDetail";
+	}
+	
+	@PostMapping("/addLocation")
+	public String addLocation(LocationDto locationDto) throws Exception {
+		logger.info("Plan addLocation {}", locationDto);
+		
+		locationService.addLocation(locationDto);
+		
+		return "redirect:/plan/list";
 	}
 }
