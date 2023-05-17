@@ -63,14 +63,18 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
-		
-		<!-- swagger를 위한 의존성 추가 -->
-		<!-- https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter -->
-		 <dependency>
+
+		<!-- swagger를 위한 의존성 추가. springfox로 검색 -->
+		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-boot-starter</artifactId>
 			<version>3.0.0</version>
-		</dependency> 
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 		
 		<!-- ObjectMapper 사용을 위한 의존성 추가 -->
 		<dependency>

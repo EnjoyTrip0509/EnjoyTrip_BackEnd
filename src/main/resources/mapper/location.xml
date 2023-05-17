@@ -12,7 +12,7 @@
 	</resultMap>
 	
 	<insert id="addLocation" parameterType="locationDto">
-		insert into location (content_id, day, order, plan_id)
+		insert into location (content_id, day, `order`, plan_id)
 		values (#{contentId}, #{day}, #{order}, #{planId})
 	</insert>
 	
@@ -28,14 +28,14 @@
 	</update>
 	
 	<select id="findLocationById" parameterType="Long" resultMap="location">
-		select id, content_id, day, order, plan_id
+		select id, content_id, day, `order`, plan_id
 		from plan
 		where id=#{id}
 	</select>
 	
 	<select id="findLocationsByPlanId" parameterType="Long" resultMap="location">
-		select id, content_id, day, order, plan_id
-		from plan
+		select id, content_id, day, `order`, plan_id
+		from location
 		where plan_id=#{planId}
 	</select>
 	
