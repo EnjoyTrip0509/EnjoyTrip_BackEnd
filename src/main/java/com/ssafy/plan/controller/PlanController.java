@@ -19,7 +19,6 @@ import com.ssafy.location.model.LocationDto;
 import com.ssafy.location.model.service.LocationService;
 import com.ssafy.plan.model.PlanDto;
 import com.ssafy.plan.model.service.PlanService;
-import com.ssafy.user.model.UserDto;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

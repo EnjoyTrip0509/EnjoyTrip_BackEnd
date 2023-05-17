@@ -12,7 +12,7 @@ import com.ssafy.announcement.model.AnnouncementDto;
 public interface AnnouncementMapper {
 	void writeAnnouncement(AnnouncementDto announcementDto) throws SQLException;
 
-	List<AnnouncementDto> listAnnouncement(Map<String, Object> param) throws SQLException;
+	List<AnnouncementDto> listAnnouncement() throws SQLException;
 
 	int getTotalAnnouncementCount(Map<String, Object> param) throws SQLException;
 

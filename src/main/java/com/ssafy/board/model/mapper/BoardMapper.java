@@ -12,7 +12,7 @@ import com.ssafy.board.model.BoardDto;
 public interface BoardMapper {
 	void writeArticle(BoardDto boardDto) throws SQLException;
 
-	List<BoardDto> listArticle(Map<String, Object> param) throws SQLException;
+	List<BoardDto> listArticle() throws SQLException;
 
 	int getTotalArticleCount(Map<String, Object> param) throws SQLException;
 
