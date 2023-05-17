@@ -12,7 +12,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 public class SwaggerConfig {
-	
+	// http://localhost:8088/enjoytrip/swagger-ui/index.html
 	@Bean
 	public Docket planApi() {
 		return new Docket(DocumentationType.OAS_30)
@@ -25,8 +25,8 @@ public class SwaggerConfig {
 	
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("RaRa")
-				.description("EnjoyTrips")
+				.title("EnjoyTrip")
+				.description("API 테스트")
 				.version("v1")
 				.build();
 	}

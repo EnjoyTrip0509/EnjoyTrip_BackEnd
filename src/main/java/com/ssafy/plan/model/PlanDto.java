@@ -8,6 +8,8 @@ public class PlanDto {
 	private Long id;
 	private String title;
 	private String memberId;
+	private String startDate;
+	private String endDate;
 	private List<LocationDto> locations;
 	
 	public Long getId() {
@@ -42,8 +44,25 @@ public class PlanDto {
 		this.locations = locations;
 	}
 
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
 	@Override
 	public String toString() {
-		return "PlanDto [id=" + id + ", title=" + title + ", memberId=" + memberId + ", locations=" + locations + "]";
+		return "PlanDto [id=" + id + ", title=" + title + ", memberId=" + memberId + ", startDate=" + startDate
+				+ ", endDate=" + endDate + ", locations=" + locations + "]";
 	}
 }
