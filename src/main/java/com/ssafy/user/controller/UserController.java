@@ -92,6 +92,8 @@ public class UserController {
 	
 	@GetMapping("/logout/{userid}")
 	public ResponseEntity<Map<String, Object>> logout(@PathVariable("userid") String id) {
+		logger.info("User logout: {}", id);
+		
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status = null;
 		
