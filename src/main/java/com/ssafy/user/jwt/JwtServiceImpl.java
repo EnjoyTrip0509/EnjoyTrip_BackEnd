@@ -102,6 +102,7 @@ public class JwtServiceImpl implements JwtService {
 			return true;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
