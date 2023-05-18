@@ -24,9 +24,17 @@
 	<select id="findAttractions" parameterType="map" resultMap="attraction">
 		select *
 		from attraction_info
-		where sido_code=#{sidoCode} and gugun_code=#{gugunCode}
-		<if test="contentTypeId != 0">
+		<if test="sidoCode != 0 and contentTypeId != 0">
+			where sido_code=#{sidoCode}
+			and gugun_code=#{gugunCode}
 			and content_type_id=#{contentTypeId}
+		</if>
+		<if test="sidoCode != 0 and contentTypeId == 0">
+			where sido_code=#{sidoCode}
+			and gugun_code=#{gugunCode}
+		</if>
+		<if test="sidoCode == 0 and contentTypeId != 0">
+			where content_type_id=#{contentTypeId}
 		</if>
 		order by content_id
 	</select>
