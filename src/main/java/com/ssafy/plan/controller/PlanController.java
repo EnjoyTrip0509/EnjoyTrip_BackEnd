@@ -46,8 +46,8 @@ public class PlanController {
 		@ApiResponse(code= 400, message = "여행 계획 목록 페이지가 존재하지 않습니다."),
 		@ApiResponse(code= 200, message = "서버 에러가 발생했습니다."),
 	})
-	@GetMapping
-	public ResponseEntity<List<PlanDto>> planList(String userId) throws Exception {
+	@GetMapping("/{userid}")
+	public ResponseEntity<List<PlanDto>> planList(@PathVariable("userid") String userId) throws Exception {
 		logger.info("PlanController findPlansByMemberId - userId: {}.", userId);
 		
 		return ResponseEntity.ok(planService.findPlansByMemberId(userId));
