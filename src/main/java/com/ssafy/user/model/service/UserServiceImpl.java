@@ -29,6 +29,11 @@ public class UserServiceImpl implements UserService {
 	public void modify(UserDto user) throws Exception {
 		userMapper.modify(user);
 	}
+	
+	@Override
+	public void delete(String id) throws Exception {
+		userMapper.delete(id);
+	}
 
 	@Override
 	public UserDto getUserInfo(String id) throws Exception {
@@ -40,6 +45,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.findPassword(user);
 	}
 
+	@Override
+	public int checkIdDuplicate(String id) throws Exception {
+		return userMapper.checkIdDuplicate(id);
+	}
+	
 	@Override
 	public void saveRefreshToken(String id, String refreshToken) throws Exception {
 		Map<String, String> map = new HashMap<String, String>();

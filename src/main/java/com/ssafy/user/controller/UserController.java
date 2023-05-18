@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,6 +68,11 @@ public class UserController {
 		}
 
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+	
+	@GetMapping("/checkId/{userid}")
+	public ResponseEntity<Object> checkIdDuplicate(@PathVariable("userid") String id) throws Exception {
+		return ResponseEntity.ok(userService.checkIdDuplicate(id));
 	}
 	
 	@PostMapping("/join")
@@ -144,23 +150,57 @@ public class UserController {
 	}
 	
 	@PutMapping("/modify")
-	public ResponseEntity<Map<String, Object>> modify(@RequestBody UserDto userDto) {
+	public ResponseEntity<Map<String, Object>> modify(@RequestBody UserDto userDto, HttpServletRequest request) {
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status = null;
 		
-		try {
-			userService.modify(userDto);
-			
-			resultMap.put("message", "success");
-			status = HttpStatus.ACCEPTED;
-		} catch (Exception e) {
-			logger.info("사용자 정보 수정 실패: {}", e);
+		if (jwtService.checkToken(request.getHeader("access-token"))) {
+			try {
+				userService.modify(userDto);
+				
+				resultMap.put("userInfo", userService.getUserInfo(userDto.getId()));
+				resultMap.put("message", "success");
+				status = HttpStatus.ACCEPTED;
+			} catch (Exception e) {
+				logger.info("사용자 정보 수정 실패: {}", e);
 
-			resultMap.put("message", e.getMessage());
-			status = HttpStatus.INTERNAL_SERVER_ERROR;
+				resultMap.put("message", e.getMessage());
+				status = HttpStatus.INTERNAL_SERVER_ERROR;
+			}
+		} else {
+			logger.info("사용 불가능한 토큰");
+			
+			resultMap.put("message", "fail");
+			status = HttpStatus.UNAUTHORIZED;
 		}
 		
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+	
+	@DeleteMapping("/delete/{userid}")
+	public ResponseEntity<Map<String, Object>> delete(@PathVariable("userid") String id, HttpServletRequest request) {
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = null;
+		
+		if (jwtService.checkToken(request.getHeader("access-token"))) {
+			try {
+				userService.delete(id);
+
+				status = HttpStatus.ACCEPTED;
+			} catch (Exception e) {
+				logger.info("회원 탈퇴 실패: {}", e);
+
+				resultMap.put("message", e.getMessage());
+				status = HttpStatus.INTERNAL_SERVER_ERROR;
+			}
+		} else {
+			logger.info("사용 불가능한 토큰");
+			
+			resultMap.put("message", "fail");
+			status = HttpStatus.UNAUTHORIZED;
+		}
+		
+		return new ResponseEntity<Map<String,Object>>(resultMap, status);
 	}
 	
 	@PostMapping("/refresh")
