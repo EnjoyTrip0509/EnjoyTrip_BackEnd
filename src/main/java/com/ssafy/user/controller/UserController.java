@@ -72,7 +72,15 @@ public class UserController {
 	
 	@GetMapping("/checkId/{userid}")
 	public ResponseEntity<Object> checkIdDuplicate(@PathVariable("userid") String id) throws Exception {
-		return ResponseEntity.ok(userService.checkIdDuplicate(id));
+		HttpStatus status = null;
+		
+		if (userService.checkIdDuplicate(id) == 0) {
+			status = HttpStatus.ACCEPTED;
+		} else {
+			status = HttpStatus.CONFLICT;
+		}
+		
+		return new ResponseEntity<Object>(status);
 	}
 	
 	@PostMapping("/join")
