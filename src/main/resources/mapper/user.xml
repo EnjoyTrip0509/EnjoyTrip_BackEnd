@@ -25,11 +25,25 @@
 	
 	<update id="modify" parameterType="UserDto">
 	 	update user
-	 	set password=#{password}, email=#{email}
+	 	set name=#{name}, email=#{email}
+	 	<if test="password != null">
+	 		, password=#{password}
+	 	</if>
 	 	where id=#{id}
 	</update>
 	
-	<select id="getUserInfo" parameterType="UserDto" resultMap="user">
+	<delete id="delete" parameterType="String">
+		delete from user
+		where id=#{id}
+	</delete>
+	
+	<select id="checkIdDuplicate" parameterType="String" resultType="int">
+		select count(*)
+		from user
+		where id=#{id}
+	</select>
+	
+	<select id="getUserInfo" parameterType="String" resultMap="user">
 		select id, name, email, joindate
 		from user
 		where id=#{id}

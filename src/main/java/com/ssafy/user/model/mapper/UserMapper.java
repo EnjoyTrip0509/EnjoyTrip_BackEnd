@@ -14,6 +14,8 @@ public interface UserMapper {
 	void modify(UserDto user) throws SQLException;
 	UserDto getUserInfo(String id) throws SQLException;
 	UserDto findPassword(UserDto user) throws SQLException;	//비밀번호 찾기
+	int checkIdDuplicate(String id) throws SQLException;
+	void delete(String id) throws SQLException;
 	
 	public void saveRefreshToken(Map<String, String> map) throws SQLException;
 	public Object getRefreshToken(String id) throws SQLException;
