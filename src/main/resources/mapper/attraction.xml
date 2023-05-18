@@ -20,7 +20,7 @@
 		<result column="longitude" property="longitude"/>
 		<result column="mlevel" property="mlevel"/>
 	</resultMap>
-		
+
 	<select id="findAttractions" parameterType="map" resultMap="attraction">
 		select *
 		from attraction_info

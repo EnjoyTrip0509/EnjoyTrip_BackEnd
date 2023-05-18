@@ -18,7 +18,7 @@
 	</insert>
 	
 	<select id="login" parameterType="UserDto" resultMap="user">
-		select id, name, email, isAdmin
+		select id, name, email, joindate, isAdmin
 		from user
 		where delflag = 0 and id=#{id} and password=#{password}
 	</select>
