@@ -16,6 +16,7 @@ public class AttractionDto {
 	private double latitude;
 	private double longitude;
 	private String mlevel;
+	private String overview;
 	
 	public AttractionDto() {
 		super();
@@ -142,12 +143,20 @@ public class AttractionDto {
 		this.mlevel = mlevel;
 	}
 
+	public String getOverview() {
+		return overview;
+	}
+
+	public void setOverview(String overview) {
+		this.overview = overview;
+	}
+	
 	@Override
 	public String toString() {
 		return "AttractionDto [contentId=" + contentId + ", contentTypeId=" + contentTypeId + ", title=" + title
 				+ ", addr1=" + addr1 + ", addr2=" + addr2 + ", zipcode=" + zipcode + ", tel=" + tel + ", firstImage="
 				+ firstImage + ", firstImage2=" + firstImage2 + ", readcount=" + readcount + ", sidoCode=" + sidoCode
 				+ ", gugunCode=" + gugunCode + ", latitude=" + latitude + ", longitude=" + longitude + ", mlevel="
-				+ mlevel + "]";
+				+ mlevel + ", overview=" + overview + "]";
 	}
 }

@@ -23,7 +23,6 @@ public class AttractionController {
 
 	@GetMapping("/search")
 	public ResponseEntity<List<AttractionDto>> search(@RequestBody Map<String, Integer> map) throws Exception {
-		System.out.println(map);
 		return new ResponseEntity<List<AttractionDto>>(attractionService.findAttractions(map), HttpStatus.OK);
 	}
 	

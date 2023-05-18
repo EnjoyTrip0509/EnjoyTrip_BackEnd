@@ -19,6 +19,7 @@
 		<result column="latitude" property="latitude"/>
 		<result column="longitude" property="longitude"/>
 		<result column="mlevel" property="mlevel"/>
+		<result column="overview" property="overview"/>
 	</resultMap>
 
 	<select id="findAttractions" parameterType="map" resultMap="attraction">
@@ -40,8 +41,10 @@
 	</select>
 	
 	<select id="findAttractionByContentId" parameterType="String" resultMap="attraction">
-		select content_id, title, addr1, first_image, latitude, longitude
-		from attraction_info
-		where content_id=#{contentId}
+		select i.content_id, i.title, i.addr1, i.first_image, i.latitude, i.longitude, d.overview
+		from attraction_info i
+		join attraction_description d
+		on i.content_id = d.content_id
+		where i.content_id = #{i.contentId}
 	</select>
 </mapper>
