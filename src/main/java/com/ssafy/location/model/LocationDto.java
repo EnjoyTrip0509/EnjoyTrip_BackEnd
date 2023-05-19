@@ -46,6 +46,10 @@ public class LocationDto {
 	public void setContentId(int contentId) {
 		this.contentId = contentId;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "LocationDto [id=" + id + ", contentId=" + contentId + ", day=" + day + ", order=" + order + ", planId="
+				+ planId + "]";
+	}
 }
