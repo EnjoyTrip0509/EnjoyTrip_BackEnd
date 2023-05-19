@@ -90,7 +90,7 @@ public class PlanController {
 		@ApiResponse(code= 400, message = "여행 계획 상세 정보 페이지가 존재하지 않습니다."),
 		@ApiResponse(code= 200, message = "서버 에러가 발생했습니다."),
 	})
-	@GetMapping("/{planId}")
+	@GetMapping("/view/{planId}")
 	public ResponseEntity<PlanDto> view(@PathVariable Long planId) throws Exception {
 		logger.info("PlanController view - planId : {}.", planId);
 		
