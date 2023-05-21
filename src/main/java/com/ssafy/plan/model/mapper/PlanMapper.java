@@ -13,6 +13,6 @@ public interface PlanMapper {
 	void deletePlan(Long id) throws SQLException;
 	void updatePlan(PlanDto planDto) throws SQLException;
 	PlanDto findPlanById(Long id) throws SQLException;
-	List<PlanDto> findPlansByMemberId(String memberId) throws SQLException;
+	List<PlanDto> findPlansByUserId(String userId) throws SQLException;
 	List<PlanDto> findAll() throws SQLException;
 }
