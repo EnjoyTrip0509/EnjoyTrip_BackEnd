@@ -1,6 +1,7 @@
 package com.ssafy.location.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,5 +46,10 @@ public class LocationServiceImpl implements LocationService {
 	@Override
 	public void updateLocation(LocationDto locationDto) throws Exception {
 		locationMapper.updateLocation(locationDto);
+	}
+
+	@Override
+	public List<LocationDto> findLocationsByPlanIdAndDay(Map<String, Object> map) throws Exception {
+		return locationMapper.findLocationsByPlanIdAndDay(map);
 	}
 }

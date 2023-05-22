@@ -7,5 +7,5 @@ import com.ssafy.attraction.model.AttractionDto;
 
 public interface AttractionService {
 	List<AttractionDto> findAttractions(Map<String, Integer> map) throws Exception;
-	AttractionDto findAttractionByContentId(String contentId) throws Exception;
+	AttractionDto findAttractionByContentId(int contentId) throws Exception;
 }

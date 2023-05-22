@@ -26,7 +26,7 @@
 
 	<update id="updateLocation" parameterType="LocationDto">
 		update location 
-		set day=#{day}, order=#{order}
+		set day=#{day}, `order`=#{order}
 		where id=#{id}
 	</update>
 	
@@ -41,6 +41,13 @@
 		from location
 		where plan_id=#{planId}
 		order by `day`, `order`
+	</select>
+	
+	<select id="findLocationsByPlanIdAndDay" parameterType="Map" resultMap="location">
+		select id, content_id, day, `order`, plan_id
+		from location
+		where plan_id=#{planId} and `day`=#{day}
+		order by `order`
 	</select>
 	
 	<delete id="deleteLocationsByPlanId" parameterType="Long">

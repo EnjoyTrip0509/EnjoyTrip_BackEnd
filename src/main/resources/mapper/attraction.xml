@@ -40,8 +40,8 @@
 		order by content_id
 	</select>
 	
-	<select id="findAttractionByContentId" parameterType="String" resultMap="attraction">
-		select i.content_id, i.title, i.addr1, i.first_image, i.latitude, i.longitude, d.overview
+	<select id="findAttractionByContentId" parameterType="int" resultMap="attraction">
+		select i.content_id, i.title, i.addr1, i.first_image, i.content_type_id, i.latitude, i.longitude, d.overview
 		from attraction_info i
 		join attraction_description d
 		on i.content_id = d.content_id

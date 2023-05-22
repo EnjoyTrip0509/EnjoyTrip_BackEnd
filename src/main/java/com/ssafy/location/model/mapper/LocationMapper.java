@@ -2,6 +2,7 @@ package com.ssafy.location.model.mapper;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,6 +14,7 @@ public interface LocationMapper {
 	void deleteLocation(Long id) throws SQLException;
 	void updateLocation(LocationDto locationDto) throws SQLException;
 	LocationDto findLocationById(Long id) throws SQLException;
+	List<LocationDto> findLocationsByPlanIdAndDay(Map<String, Object> map) throws SQLException;
 	List<LocationDto> findLocationsByPlanId(Long planId) throws SQLException;
 	void deleteLocationsByPlanId(Long planId) throws SQLException;
 }

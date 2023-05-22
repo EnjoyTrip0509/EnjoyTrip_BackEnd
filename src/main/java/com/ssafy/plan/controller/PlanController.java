@@ -1,6 +1,8 @@
 package com.ssafy.plan.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.attraction.model.service.AttractionService;
 import com.ssafy.location.model.LocationDto;
 import com.ssafy.location.model.service.LocationService;
 import com.ssafy.plan.model.PlanDto;
 import com.ssafy.plan.model.service.PlanService;
+import com.ssafy.user.jwt.JwtServiceImpl;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,14 +35,14 @@ import io.swagger.annotations.ApiResponses;
 public class PlanController {
 	private static final Logger logger = LoggerFactory.getLogger(PlanController.class);
 	
-	private PlanService planService;
-	private LocationService locationService;
-	
 	@Autowired
-	public PlanController(PlanService planService, LocationService locationService) {
-		this.planService = planService;
-		this.locationService = locationService;
-	}
+	private PlanService planService;
+	@Autowired
+	private LocationService locationService;
+	@Autowired
+	private AttractionService attractionService;
+	@Autowired
+	private JwtServiceImpl jwtService;
 	
 	@ApiOperation(value = "여행 계획 목록", notes = "여행 계획의 <big>전체 목록</big>을 반환해 줍니다.")
 	@ApiResponses({
@@ -100,6 +104,28 @@ public class PlanController {
 		return ResponseEntity.ok(plan);
 	}
 	
+	@ApiOperation(value = "여행 계획 일별 정보 조회", notes = "여행 계획의 일별 상세 정보를 반환합니다.")
+	@ApiResponses({
+		@ApiResponse(code= 200, message = "여행 계획 일별 상세 정보를 불러오는 데 성공했습니다."),
+		@ApiResponse(code= 400, message = "여행 계획 일별 상세 정보 페이지가 존재하지 않습니다."),
+		@ApiResponse(code= 200, message = "서버 에러가 발생했습니다."),
+	})
+	@GetMapping("/view/{planId}/{day}")
+	public ResponseEntity<List<LocationDto>> view(@PathVariable Long planId, @PathVariable Integer day) throws Exception {
+		logger.info("PlanController view - planId : {}, day: {}.", planId, day);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("planId", planId);
+		map.put("day", day);
+		
+		List<LocationDto> locations = locationService.findLocationsByPlanIdAndDay(map);
+		for(LocationDto location : locations) {
+			location.setAttraction(attractionService.findAttractionByContentId(location.getContentId()));
+		}
+		
+		return ResponseEntity.ok(locations);
+	}
+	
 	@ApiOperation(value = "여행 계획 수정", notes = "여행 계획을 수정합니다.")
 	@ApiResponses({
 		@ApiResponse(code= 200, message = "여행 계획을 수정하는 데 성공했습니다."),
@@ -129,7 +155,7 @@ public class PlanController {
 		logger.info("PlanController add Location - location : {}.", location);
 
 		locationService.addLocation(location);
-
+		
 		return ResponseEntity.ok().build();
 	}
 	

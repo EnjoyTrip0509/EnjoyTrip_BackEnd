@@ -1,6 +1,7 @@
 package com.ssafy.location.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ssafy.location.model.LocationDto;
 
@@ -10,5 +11,6 @@ public interface LocationService {
 	void updateLocation(LocationDto locationDto) throws Exception;
 	LocationDto findLocationById(Long id) throws Exception;
 	List<LocationDto> findLocationsByPlanId(Long planId) throws Exception;
-	void deleteLocationsByPlanId(Long planId) throws Exception;;
+	void deleteLocationsByPlanId(Long planId) throws Exception;
+	List<LocationDto> findLocationsByPlanIdAndDay(Map<String, Object> map) throws Exception;
 }
