@@ -7,7 +7,7 @@ import com.ssafy.location.model.LocationDto;
 public class PlanDto {
 	private Long id;
 	private String title;
-	private String memberId;
+	private String userId;
 	private String startDate;
 	private String endDate;
 	private List<LocationDto> locations;
@@ -28,12 +28,28 @@ public class PlanDto {
 		this.title = title;
 	}
 	
-	public String getMemberId() {
-		return memberId;
+	public String getUserId() {
+		return userId;
 	}
 	
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	
+	public String getStartDate() {
+		return startDate;
+	}
+	
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+	
+	public String getEndDate() {
+		return endDate;
+	}
+	
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 	
 	public List<LocationDto> getLocations() {
@@ -44,25 +60,9 @@ public class PlanDto {
 		this.locations = locations;
 	}
 
-	public String getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-
-	public String getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
-	}
-
 	@Override
 	public String toString() {
-		return "PlanDto [id=" + id + ", title=" + title + ", memberId=" + memberId + ", startDate=" + startDate
+		return "PlanDto [id=" + id + ", title=" + title + ", userId=" + userId + ", startDate=" + startDate
 				+ ", endDate=" + endDate + ", locations=" + locations + "]";
 	}
 }

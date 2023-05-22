@@ -9,6 +9,6 @@ public interface PlanService {
 	void deletePlan(Long id) throws Exception;
 	void updatePlan(PlanDto planDto) throws Exception;
 	PlanDto findPlanById(Long id) throws Exception;
-	List<PlanDto> findPlansByMemberId(String memberId) throws Exception;
+	List<PlanDto> findPlansByUserId(String userId) throws Exception;
 	List<PlanDto> findAll() throws Exception;
 }

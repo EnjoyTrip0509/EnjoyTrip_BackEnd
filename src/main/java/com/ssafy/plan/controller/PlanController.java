@@ -50,7 +50,7 @@ public class PlanController {
 	public ResponseEntity<List<PlanDto>> planList(@PathVariable("userid") String userId) throws Exception {
 		logger.info("PlanController findPlansByMemberId - userId: {}.", userId);
 		
-		return ResponseEntity.ok(planService.findPlansByMemberId(userId));
+		return ResponseEntity.ok(planService.findPlansByUserId(userId));
 	}
 
 	@ApiOperation(value = "여행 계획 추가", notes = "여행 계획을 추가합니다.")

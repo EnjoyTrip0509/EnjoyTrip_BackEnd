@@ -36,8 +36,8 @@ public class PlanServiceImpl implements PlanService {
 	}
 
 	@Override
-	public List<PlanDto> findPlansByMemberId(String memberId) throws Exception {
-		return planMapper.findPlansByMemberId(memberId);
+	public List<PlanDto> findPlansByUserId(String userId) throws Exception {
+		return planMapper.findPlansByUserId(userId);
 	}
 
 	@Override

@@ -6,17 +6,14 @@
 	<resultMap type="planDto" id="plan">
 		<result column="id" property="id"/>
 		<result column="title" property="title"/>
-		<result column="member_id" property="memberId"/>
+		<result column="user_id" property="userId"/>
 		<result column="start_date" property="startDate"/>
 		<result column="end_date" property="endDate"/>
 	</resultMap>
 	
 	<insert id="addPlan" parameterType="planDto">
-		insert into plan (title, member_id, start_date, end_date)
-		values (#{title}, #{memberId}, #{startDate}, #{endDate})
-		<selectKey resultType="Long" keyProperty="id" order="AFTER">
-			select last_insert_id()
-		</selectKey>
+		insert into plan (title, user_id, start_date, end_date)
+		values (#{title}, #{userId}, #{startDate}, #{endDate})
 	</insert>
 	
 	<delete id="deletePlan" parameterType="Long">
@@ -31,20 +28,21 @@
 	</update>
 	
 	<select id="findPlanById" parameterType="Long" resultMap="plan">
-		select id, title, member_id, start_date, end_date
+		select id, title, user_id, start_date, end_date
 		from plan
 		where id=#{id}
 	</select>
 	
-	<select id="findPlansByMemberId" parameterType="String" resultMap="plan">
-		select id, title, member_id, start_date, end_date
+	<select id="findPlansByUserId" parameterType="String" resultMap="plan">
+		select id, title, user_id, start_date, end_date
 		from plan
-		where member_id=#{memberId}
+		where user_id=#{userId}
+		order by id desc;
 	</select>
 	
 	<select id="findAll" resultMap="plan">
-		select id, title, member_id, start_date, end_date
+		select id, title, user_id, start_date, end_date
 		from plan
-		order by id;
+		order by id desc;
 	</select>
 </mapper>
