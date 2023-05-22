@@ -28,7 +28,7 @@ public class AttractionController {
 	}
 	
 	@GetMapping("/{contentId}")
-	public ResponseEntity<AttractionDto> getAttraction(@PathVariable String contentId) throws Exception {
+	public ResponseEntity<AttractionDto> getAttraction(@PathVariable int contentId) throws Exception {
 		return ResponseEntity.ok(attractionService.findAttractionByContentId(contentId));
 	}
 }

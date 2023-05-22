@@ -1,11 +1,14 @@
 package com.ssafy.location.model;
 
+import com.ssafy.attraction.model.AttractionDto;
+
 public class LocationDto {
 	private Long id;
 	private int contentId;
 	private int day;
 	private int order;
 	private Long planId;
+	AttractionDto attraction;
 	
 	public Long getId() {
 		return id;
@@ -13,6 +16,14 @@ public class LocationDto {
 	
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public int getContentId() {
+		return contentId;
+	}
+	
+	public void setContentId(int contentId) {
+		this.contentId = contentId;
 	}
 	
 	public int getDay() {
@@ -39,17 +50,17 @@ public class LocationDto {
 		this.planId = planId;
 	}
 	
-	public int getContentId() {
-		return contentId;
+	public AttractionDto getAttraction() {
+		return attraction;
 	}
 	
-	public void setContentId(int contentId) {
-		this.contentId = contentId;
+	public void setAttraction(AttractionDto attraction) {
+		this.attraction = attraction;
 	}
 
 	@Override
 	public String toString() {
 		return "LocationDto [id=" + id + ", contentId=" + contentId + ", day=" + day + ", order=" + order + ", planId="
-				+ planId + "]";
+				+ planId + ", attraction=" + attraction + "]";
 	}
 }

@@ -11,5 +11,5 @@ import com.ssafy.attraction.model.AttractionDto;
 @Mapper
 public interface AttractionMapper {
 	List<AttractionDto> findAttractions(Map<String, Integer> param) throws SQLException;
-	AttractionDto findAttractionByContentId(String contentId) throws SQLException;
+	AttractionDto findAttractionByContentId(int contentId) throws SQLException;
 }
