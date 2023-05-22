@@ -11,17 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.mvc.condition.RequestConditionHolder;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
-import io.swagger.v3.oas.annotations.servers.Server;
 
 @Service
 public class JwtServiceImpl implements JwtService {
@@ -35,7 +29,7 @@ public class JwtServiceImpl implements JwtService {
 	
 	@Override
 	public <T> String createAccessToken(String key, T data) {
-		return createToken(key, data, "access-token", 1000 * 60 * ACCESS_TOKEN_EXPIRE_MINUTES);
+		return createToken(key, data, "access-token", 1000 * 60 * 60 * ACCESS_TOKEN_EXPIRE_MINUTES);
 	}
 
 	@Override
