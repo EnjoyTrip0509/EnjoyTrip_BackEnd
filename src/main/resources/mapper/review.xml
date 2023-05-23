@@ -22,7 +22,7 @@
 	
 	<update id="modifyReview" parameterType="reviewDto">
 		update review
-		set content_id=#{contentId}, subject = #{subject}, content = #{content}
+		set content = #{content}
 		where article_no = #{articleNo}
 	</update>
 	
