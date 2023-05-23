@@ -7,6 +7,7 @@
 	<resultMap type="reviewDto" id="review">
 		<result column="article_no" property="articleNo"/>
 		<result column="content_id" property="contentId"/>
+		<result column="plan_id" property="planId"/>
 		<result column="user_id" property="userId"/>
 		<result column="user_name" property="userName"/>
 		<result column="subject" property="subject"/>
@@ -16,18 +17,18 @@
 	</resultMap>
 
 	<insert id="addReview" parameterType="reviewDto">
-		insert into review (content_id, user_id, subject, content)
-		values (#{contentId}, #{userId}, #{subject}, #{content})
+		insert into review (content_id, plan_id, user_id, subject, content)
+		values (#{contentId}, #{planId}, #{userId}, #{subject}, #{content})
 	</insert>
 	
 	<update id="modifyReview" parameterType="reviewDto">
 		update review
-		set content_id=#{contentId}, subject = #{subject}, content = #{content}
+		set content = #{content}
 		where article_no = #{articleNo}
 	</update>
 	
 	<select id="getReview" parameterType="int" resultMap="review">
-		select r.article_no, r.content_id, r.user_id, r.subject, r.content, r.hit, r.register_time, u.name as user_name 
+		select r.article_no, r.content_id, r.plan_id, r.user_id, r.subject, r.content, r.hit, r.register_time, u.name as user_name 
 		from review r, user u
 		where r.user_id = u.id
 		and r.article_no = #{articleNo}
@@ -39,14 +40,14 @@
 	</delete>
 	
 	<select id="findAll" resultMap="review">
-		select r.article_no, r.content_id, r.user_id, r.subject, r.content, r.hit, r.register_time, u.name as user_name 
+		select r.article_no, r.content_id, r.plan_id, r.user_id, r.subject, r.content, r.hit, r.register_time, u.name as user_name 
 		from review r, user u
 		where r.user_id = u.id
 		order by r.register_time desc
 	</select>
 	
 	<select id="findReviewsByUserId" parameterType="String" resultMap="review">
-		select r.article_no, r.content_id, r.user_id, r.subject, r.content, r.hit, r.register_time, u.name as user_name 
+		select r.article_no, r.content_id, r.plan_id, r.user_id, r.subject, r.content, r.hit, r.register_time, u.name as user_name 
 		from review r, user u
 		where r.user_id = u.id
 		and r.user_id = #{userId}
@@ -54,7 +55,7 @@
 	</select>
 	
 	<select id="findReviewsByContentId" parameterType="int" resultMap="review">
-		select r.article_no, r.content_id, r.user_id, r.subject, r.content, r.hit, r.register_time, u.name as user_name 
+		select r.article_no, r.content_id, r.plan_id, r.user_id, r.subject, r.content, r.hit, r.register_time, u.name as user_name 
 		from review r, user u
 		where r.user_id = u.id
 		and r.content_id = #{contentId}

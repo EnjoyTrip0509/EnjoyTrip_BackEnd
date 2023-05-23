@@ -3,6 +3,7 @@ package com.ssafy.review.model;
 public class ReviewDto {
 	private int articleNo;
 	private int contentId;
+	private long planId;
 	private String subject;
 	private String content;
 	private String userId;
@@ -24,6 +25,14 @@ public class ReviewDto {
 	
 	public void setContentId(int contentId) {
 		this.contentId = contentId;
+	}
+	
+	public long getPlanId() {
+		return planId;
+	}
+	
+	public void setPlanId(long planId) {
+		this.planId = planId;
 	}
 	
 	public String getSubject() {
@@ -76,8 +85,8 @@ public class ReviewDto {
 
 	@Override
 	public String toString() {
-		return "ReviewDto [articleNo=" + articleNo + ", contentId=" + contentId + ", subject=" + subject + ", content="
-				+ content + ", userId=" + userId + ", userName=" + userName + ", hit=" + hit + ", registerTime="
-				+ registerTime + "]";
+		return "ReviewDto [articleNo=" + articleNo + ", contentId=" + contentId + ", planId=" + planId + ", subject="
+				+ subject + ", content=" + content + ", userId=" + userId + ", userName=" + userName + ", hit=" + hit
+				+ ", registerTime=" + registerTime + "]";
 	}
 }

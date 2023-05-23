@@ -47,4 +47,16 @@
 		on i.content_id = d.content_id
 		where i.content_id = #{i.contentId}
 	</select>
+	
+	<select id="findHotPlace" resultMap="attraction">
+		select a.content_id, a.title, a.addr1, a.first_image
+		from attraction_info a
+		join (
+			select content_id, count(*) as `count`
+			from review
+			group by content_id
+			order by count(*) desc
+			limit 10) r
+		on a.content_id = r.content_id;
+	</select>
 </mapper>

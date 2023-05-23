@@ -23,4 +23,9 @@ public class AttractionServiceImpl implements AttractionService {
 	public AttractionDto findAttractionByContentId(int contentId) throws Exception {
 		return attractionMapper.findAttractionByContentId(contentId);
 	}
+	
+	@Override
+	public List<AttractionDto> findHotPlace() throws Exception {
+		return attractionMapper.findHotPlace();
+	}
 }
