@@ -12,4 +12,5 @@ import com.ssafy.attraction.model.AttractionDto;
 public interface AttractionMapper {
 	List<AttractionDto> findAttractions(Map<String, Integer> param) throws SQLException;
 	AttractionDto findAttractionByContentId(int contentId) throws SQLException;
+	List<AttractionDto> findHotPlace() throws SQLException;
 }

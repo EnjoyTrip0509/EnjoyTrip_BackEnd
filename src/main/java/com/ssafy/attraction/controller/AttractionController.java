@@ -31,4 +31,9 @@ public class AttractionController {
 	public ResponseEntity<AttractionDto> getAttraction(@PathVariable int contentId) throws Exception {
 		return ResponseEntity.ok(attractionService.findAttractionByContentId(contentId));
 	}
+	
+	@GetMapping("/hotplace")
+	public ResponseEntity<List<AttractionDto>> getHotPlace() throws Exception {
+		return ResponseEntity.ok(attractionService.findHotPlace());
+	}
 }
