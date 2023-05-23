@@ -41,7 +41,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('qwer','qwer','qwer','qwer','2023-05-17 05:04:08',0,0,NULL),('ssafy','ssafy','ssafy','ssafy@ssafy.com','2023-05-17 05:04:08',1,0,'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWZyZXNoLXRva2VuIiwiaWF0IjoxNjg0MzA4Mjk2LCJleHAiOjE2ODU1MTc4OTYsInVzZXJpZCI6InNzYWZ5In0.Tvy0f8yrNuySjlNooZYCkBnz4zg_EwE-swkpMj9xlfQ'),('test','test','t','test@naver.com','2023-05-17 07:26:49',0,0,NULL);
+INSERT INTO `user` VALUES ('qwer','qwer','qwer','qwer','2023-05-17 05:04:08',0,0,NULL),('ssafy','1234','ssafy','ssafy@ssafy.com','2023-05-17 05:04:08',1,0,'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyZWZyZXNoLXRva2VuIiwiaWF0IjoxNjg0ODI3MzQxLCJleHAiOjE2ODYwMzY5NDEsInVzZXJpZCI6InNzYWZ5In0.4BzkBiUYIVIrd0ecRp5U5s8pfIqH-LYgDbdzDnLOa-o');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-17 16:52:37
+-- Dump completed on 2023-05-23 16:49:52
