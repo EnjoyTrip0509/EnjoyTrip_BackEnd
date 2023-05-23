@@ -73,4 +73,9 @@ public class UserServiceImpl implements UserService {
 		userMapper.deleteRefreshToken(map);
 	}
 
+	@Override
+	public UserDto checkPassword(UserDto userDto) throws Exception {
+		return userMapper.checkPassword(userDto);
+	}
+
 }

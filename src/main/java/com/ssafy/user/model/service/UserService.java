@@ -14,4 +14,5 @@ public interface UserService {
 	public void saveRefreshToken(String id, String refreshToken) throws Exception;
 	public Object getRefreshToken(String id) throws Exception;
 	public void deleRefreshToken(String id) throws Exception;
+	UserDto checkPassword(UserDto userDto) throws Exception;
 }

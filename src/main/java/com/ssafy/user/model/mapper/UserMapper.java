@@ -20,4 +20,6 @@ public interface UserMapper {
 	public void saveRefreshToken(Map<String, String> map) throws SQLException;
 	public Object getRefreshToken(String id) throws SQLException;
 	public void deleteRefreshToken(Map<String, String> map) throws SQLException;
+	UserDto checkPassword(UserDto userDto) throws SQLException;
+
 }
