@@ -85,7 +85,7 @@ public class UserController {
 	
 	@PostMapping("/join")
 	public ResponseEntity<Map<String, Object>> join(@RequestBody UserDto user) {
-		logger.info("User join: {}", user);
+		logger.info("User checkpassword: {}", user);
 		
 		Map<String, Object> resultMap = new HashMap<>();
 		HttpStatus status = null;
@@ -243,6 +243,19 @@ public class UserController {
 	public ResponseEntity<?> password(UserDto user) throws Exception {
 		UserDto password = userService.findPassword(user);
 		return new ResponseEntity<UserDto>(password, HttpStatus.OK);
+	}
+	
+	@PostMapping("/checkpassword")
+	public ResponseEntity<?> checkpassword(@RequestBody UserDto userDto) throws Exception {
+		System.out.println(userDto);
+
+		UserDto password = userService.checkPassword(userDto);
+		if (password != null) {
+			return new ResponseEntity(HttpStatus.OK);
+		} else {
+			return new ResponseEntity(HttpStatus.NOT_FOUND);
+		}
+		
 	}
 	
 }
