@@ -27,6 +27,11 @@ public class AttractionController {
 		return new ResponseEntity<List<AttractionDto>>(attractionService.findAttractions(map), HttpStatus.OK);
 	}
 	
+	@PostMapping("/search/count")
+	public ResponseEntity<Integer> getResultCount(@RequestBody Map<String, Integer> map) throws Exception {
+		return new ResponseEntity<Integer>(attractionService.getResultCount(map), HttpStatus.OK);
+	}
+	
 	@GetMapping("/{contentId}")
 	public ResponseEntity<AttractionDto> getAttraction(@PathVariable int contentId) throws Exception {
 		return ResponseEntity.ok(attractionService.findAttractionByContentId(contentId));
