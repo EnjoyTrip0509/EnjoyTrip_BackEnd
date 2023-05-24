@@ -1,5 +1,6 @@
 package com.ssafy.attraction.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,15 +24,21 @@ public class AttractionController {
 	private AttractionService attractionService;
 
 	@PostMapping("/search")
-	public ResponseEntity<List<AttractionDto>> search(@RequestBody Map<String, Integer> map) throws Exception {
-		return new ResponseEntity<List<AttractionDto>>(attractionService.findAttractions(map), HttpStatus.OK);
+	public ResponseEntity<Map<String, Object>> search(@RequestBody Map<String, Integer> params) throws Exception {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		if (params.get("pageNo") > 0) {
+			resultMap.put("attractions", attractionService.findAttractions(params));
+		} else {
+			params.put("pageNo", 1);
+			
+			resultMap.put("resultCount", attractionService.getResultCount(params));
+			resultMap.put("attractions", attractionService.findAttractions(params));
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(resultMap, HttpStatus.OK);
 	}
-	
-	@PostMapping("/search/count")
-	public ResponseEntity<Integer> getResultCount(@RequestBody Map<String, Integer> map) throws Exception {
-		return new ResponseEntity<Integer>(attractionService.getResultCount(map), HttpStatus.OK);
-	}
-	
+
 	@GetMapping("/{contentId}")
 	public ResponseEntity<AttractionDto> getAttraction(@PathVariable int contentId) throws Exception {
 		return ResponseEntity.ok(attractionService.findAttractionByContentId(contentId));
