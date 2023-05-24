@@ -13,4 +13,5 @@ public interface AttractionMapper {
 	List<AttractionDto> findAttractions(Map<String, Integer> param) throws SQLException;
 	AttractionDto findAttractionByContentId(int contentId) throws SQLException;
 	List<AttractionDto> findHotPlace() throws SQLException;
+	int getResultCount(Map<String, Integer> map) throws SQLException;
 }

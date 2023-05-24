@@ -9,4 +9,5 @@ public interface AttractionService {
 	List<AttractionDto> findAttractions(Map<String, Integer> map) throws Exception;
 	AttractionDto findAttractionByContentId(int contentId) throws Exception;
 	List<AttractionDto> findHotPlace() throws Exception;
+	int getResultCount(Map<String, Integer> map) throws Exception;
 }

@@ -22,6 +22,23 @@
 		<result column="overview" property="overview"/>
 	</resultMap>
 
+	<select id="getResultCount" parameterType="map" resultType="int">
+		select count(*)
+		from attraction_info
+		<if test="sidoCode != 0 and contentTypeId != 0">
+			where sido_code=#{sidoCode}
+			and gugun_code=#{gugunCode}
+			and content_type_id=#{contentTypeId}
+		</if>
+		<if test="sidoCode != 0 and contentTypeId == 0">
+			where sido_code=#{sidoCode}
+			and gugun_code=#{gugunCode}
+		</if>
+		<if test="sidoCode == 0 and contentTypeId != 0">
+			where content_type_id=#{contentTypeId}
+		</if>
+	</select>
+
 	<select id="findAttractions" parameterType="map" resultMap="attraction">
 		select *
 		from attraction_info
@@ -38,6 +55,7 @@
 			where content_type_id=#{contentTypeId}
 		</if>
 		order by content_id
+		limit #{start}, 9
 	</select>
 	
 	<select id="findAttractionByContentId" parameterType="int" resultMap="attraction">
